@@ -1,4 +1,4 @@
 from os import system as A
-def C():A('git commit --allow-empty -m commit');A('git push')
+def C():A('echo $(date) >> commits.txt');A('git add commits.txt');A('git commit -m Update commits.txt');A('git push')
 B=0
-while B<999999999:B+=1;C()
+while B<99999999:B+=1;C()
