@@ -19,6 +19,6 @@ jobs:
       with:
           python-version: '3.10'
     - name: Setup Git Config
-      run: git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com" && git config --local user.name "${GITHUB_ACTOR}"
+      run: git config --local user.email "122571532+plazsuper@users.noreply.github.com" && git config --local user.name "plazsuper"
     - name: Run Python Code
       run: python main.py
