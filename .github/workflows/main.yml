@@ -1,24 +1,24 @@
-name: Auto Commit Github
+name: ci
+
 on:
   push:
     branches:
-      - main
+      - master
   schedule:
-    - cron: "* */6 * * *"
+    - cron: "* * * * *"
+
 jobs:
-   acg:
-    name: Auto Green
+  autogreen:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-          python-version: '3.10'
-    - name: Setup Git Config
-      run: git config --local user.email "122571532+plazsuper@users.noreply.github.com" && git config --local user.name "plazsuper"
-    - name: Run Python Code
-      run: python main.py
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Auto green
+        run: |
+          git config --local user.email "122571532+plazsuper@users.noreply.github.com"
+          git config --local user.name "plazsuper"
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase
+          git commit --allow-empty -m "a commit a day keeps your girlfriend away"
+          git push
